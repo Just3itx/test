@@ -1,0 +1,17 @@
+local Players = game:GetService("Players")
+local Workspace = game:GetService("Workspace") -- For games that rename workspace
+
+local LocalPlayer = Players.LocalPlayer
+local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+local HumanoidRootPart = Character.HumanoidRootPart
+
+Workspace.FallenPartsDestroyHeight = -math.huge -- So we don't die from the void.
+
+local Saved = HumanoidRootPart.CFrame
+HumanoidRootPart.CFrame = CFrame.new(0, -1000, 0)
+
+task.wait(0.85) -- Wait a longer duration for users with high ping.
+HumanoidRootPart.CFrame = Saved
+
+task.wait(0.5)
+Workspace.FallenPartsDestroyHeight = 0
